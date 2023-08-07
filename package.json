@@ -1,8 +1,8 @@
 {
   "name": "market-manage",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "NestJS backend services for market management",
+  "author": "jored93",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
