@@ -28,10 +28,10 @@ $ npm install
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ NODE_ENV=dev npm run start:dev
 
 # production mode
-$ npm run start:prod
+$ NODE_ENV=prod npm run start:prod
 ```
 
 ## Test
