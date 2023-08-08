@@ -8,9 +8,6 @@ import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
 import { enviroments } from './environments';
 import config from './config';
 
@@ -31,9 +28,8 @@ import config from './config';
     UsersModule,
     DatabaseModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: 'TASKS',
       useFactory: async (http: HttpService) => {
