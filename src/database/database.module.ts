@@ -6,16 +6,6 @@ import config from '../config';
 const API_KEY = '1234567890';
 const API_KEY_PROD = '1234567890';
 
-const client = new Client({
-  user: 'joreddev',
-  host: 'localhost',
-  database: 'postgres',
-  password: 'postgres',
-  port: 5432,
-});
-
-client.connect();
-
 @Global()
 @Module({
   providers: [
@@ -26,11 +16,11 @@ client.connect();
     {
       provide: 'PG',
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, dbName, password, port } = configService.postgres;
+        const { user, host, database, password, port } = configService.postgres;
         const client = new Client({
           user,
           host,
-          database: dbName,
+          database,
           password,
           port,
           /* ssl: {
