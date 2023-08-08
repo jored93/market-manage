@@ -9,11 +9,9 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 
-@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -23,12 +21,17 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('tasks')
+  getTasks() {
+    return this.usersService.getTasks();
+  }
+
   @Get(':id')
   get(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
   }
 
-  @Get(':id/orders') //  👈 new endpoint
+  @Get(':id/orders')
   getOrders(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.getOrderByUser(id);
   }

@@ -3,6 +3,8 @@ import { HttpModule, HttpService } from '@nestjs/axios';
 import * as Joi from 'joi';
 
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
@@ -19,8 +21,11 @@ import config from './config';
       isGlobal: true,
       validationSchema: Joi.object({
         API_KEY: Joi.string().required(),
+        DATABASE_HOST: Joi.string().hostname().required(),
         DATABASE_NAME: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
+        DATABASE_USER: Joi.string().required(),
+        DATABASE_PASSWORD: Joi.string().required(),
       }),
     }),
     HttpModule,
@@ -28,8 +33,9 @@ import config from './config';
     UsersModule,
     DatabaseModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [
+    AppService,
     {
       provide: 'TASKS',
       useFactory: async (http: HttpService) => {
